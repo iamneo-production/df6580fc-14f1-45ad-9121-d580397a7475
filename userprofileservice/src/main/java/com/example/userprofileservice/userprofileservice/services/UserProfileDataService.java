@@ -12,3 +12,4 @@ public interface UserProfileDataService {
 
 	public UserProfileData addUser(UserProfileData userProfileData);
 }
+
