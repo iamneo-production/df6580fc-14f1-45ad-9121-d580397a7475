@@ -1,5 +1,6 @@
 package com.example.userprofileservice.userprofileservice.entities;
 
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,19 +20,20 @@ public class UserProfileData {
 	private int age;
 	
 	@Transient
-	List<HealthData> healthData = new ArrayList<>();
+	List<Notification> notifications = new ArrayList<>();
 
 	public UserProfileData() {
 		super();
 	}
 
-	public UserProfileData(String userProfileId, String userName, String sex, int age, List<HealthData> healthData) {
+	public UserProfileData(String userProfileId, String userName, String sex, int age,
+			List<Notification> notifications) {
 		super();
 		this.userProfileId = userProfileId;
 		this.userName = userName;
 		this.sex = sex;
 		this.age = age;
-		this.healthData = healthData;
+		this.notifications = notifications;
 	}
 
 	public String getUserProfileId() {
@@ -66,18 +68,18 @@ public class UserProfileData {
 		this.age = age;
 	}
 
-	public List<HealthData> getHealthData() {
-		return healthData;
+	public List<Notification> getNotifications() {
+		return notifications;
 	}
 
-	public void setHealthData(List<HealthData> healthData) {
-		this.healthData = healthData;
+	public void setNotifications(List<Notification> notifications) {
+		this.notifications = notifications;
 	}
 
 	@Override
 	public String toString() {
 		return "UserProfileData [userProfileId=" + userProfileId + ", userName=" + userName + ", sex=" + sex + ", age="
-				+ age + ", healthData=" + healthData + "]";
+				+ age + ", notifications=" + notifications + "]";
 	}
 
 	
@@ -85,4 +87,3 @@ public class UserProfileData {
 	
 
 }
-

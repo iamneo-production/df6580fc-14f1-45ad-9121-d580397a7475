@@ -6,7 +6,9 @@ import java.util.UUID;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.example.userprofileservice.userprofileservice.entities.Notification;
 import com.example.userprofileservice.userprofileservice.entities.UserProfileData;
+import com.example.userprofileservice.userprofileservice.external.services.NotificationService;
 import com.example.userprofileservice.userprofileservice.respositories.UserProfileDataRepository;
 import com.example.userprofileservice.userprofileservice.services.UserProfileDataService;
 
@@ -16,9 +18,17 @@ public class UserProfileDataServiceImpl implements UserProfileDataService{
 	@Autowired
 	private UserProfileDataRepository userProfileDataRepository;
 	
+	@Autowired
+	private NotificationService notificationService;
+	
 	@Override
-	public UserProfileData getUserProfile(String userId) {
-		return this.userProfileDataRepository.findById(userId).orElse(null);
+	public UserProfileData getUserProfile(String userProfileId) {
+		UserProfileData userProfileData = userProfileDataRepository.findById(userProfileId).orElse(null);
+		if(userProfileData!=null) {
+			List<Notification> notifications = notificationService.getNotificationsByUserProfileId(userProfileId);
+			userProfileData.setNotifications(notifications);
+		}
+		return userProfileData;
 	}
 
 	@Override
